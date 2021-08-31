@@ -68,7 +68,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>Kerwind</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 字
+      1.9k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24
+      21
        分钟
     </span>
   
@@ -245,7 +245,7 @@
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">ssh <span class="hljs-symbol">git@</span>github.com<br></code></pre></td></tr></table></figure>
 
 <p>验证是否设置成功，成功的输出差不多是这样的：</p>
-<p>![SSH验证](C:/Blog/技术/20210830 【个人博客搭建】 01 Win10 + Hexo + Github/SSH验证.png)</p>
+<p><img src="https://gitee.com/kerwin_deng/picbed/raw/master/img/SSH%E9%AA%8C%E8%AF%81.png" srcset="/img/loading.gif" lazyload alt="SSH验证"></p>
 <h2 id="安装Node和Hexo"><a href="#安装Node和Hexo" class="headerlink" title="安装Node和Hexo"></a>安装Node和Hexo</h2><p>Hexo是基于Node来生成静态页面的。安装Node的步骤也很简单，直接官网下载对应版本即可。安装完毕后重新打开Git Bash，输入命令检测安装是否成功：</p>
 <figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-keyword">node</span> <span class="hljs-title">-v</span><br>npm -v<br></code></pre></td></tr></table></figure>
 
@@ -257,37 +257,36 @@
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">hexo <span class="hljs-keyword">init</span> blog<br></code></pre></td></tr></table></figure>
 
 <p>此时可能会遇到这种问题：</p>
-<p>![初始化问题](C:/Blog/技术/20210830 【个人博客搭建】 01 Win10 + Hexo + Github/HexoInit错误.png)</p>
+<p><img src="https://gitee.com/kerwin_deng/picbed/raw/master/img/HexoInit%E9%94%99%E8%AF%AF.png" srcset="/img/loading.gif" lazyload alt="初始化问题"></p>
 <p>请参考[这篇博文](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43874301/article/details/111102493">hexo : 无法加载文件 C:\Users\mxz\AppData\Roaming\npm\hexo.ps1，因为在此系统上禁止运行脚本。_后端码匠-CSDN博客</a>)的解决方法。这要调整windows设置就行了。</p>
 <p>初始化完毕后，实际上就可以尝试将网站发布了。但这个地方有一点需要注意。我最开始新建的文件夹路径是 D:/Blog 并在这个路径下初始化博客，这个时候文件夹里会出现一个blog文件夹，实际上就是“hexo init blog”执行的结果。<strong>之后部署的命令都需要进入此blog文件夹操作！</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> blog<br>hexo new <span class="hljs-built_in">test</span><br>hexo g<br>hexo s<br></code></pre></td></tr></table></figure>
 
 <p>没有问题的话，在浏览器访问<a href="http://localhost:4000，能够看到如下的界面：">http://localhost:4000，能够看到如下的界面：</a></p>
-<p>![发布结果1](C:/Blog/技术/20210830 【个人博客搭建】 01 Win10 + Hexo + Github/Hexo发布结果01.png)</p>
+<p><img src="https://gitee.com/kerwin_deng/picbed/raw/master/img/Hexo%E5%8F%91%E5%B8%83%E7%BB%93%E6%9E%9C01.png" srcset="/img/loading.gif" lazyload alt="发布结果1"></p>
 <p>目前项目已经能够在本地访问，但如何将本地项目推送到Github？其实也很简单，只需要更改_config.yml文件即可。但需要注意，整个项目中会有两个_config.yml文件，其中一个是用来调整整个网站的配置的，位于<strong>blog</strong>文件夹下；另一个则是用来更改主题的，位于**blog/themes/**文件夹下。我们需要更改的是配置整个站点的_config.yml文件。用记事本或者vs code打开该文件，修改最后部分：</p>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">depoly:</span><br><span class="hljs-symbol">	type:</span> git<br><span class="hljs-symbol">	repo:</span> git@github.com:kkk159/kkk159.github.io.git<br><span class="hljs-symbol">	branch:</span> master<br></code></pre></td></tr></table></figure>
 
-<p>其中，<em>repo</em>是最初创建的仓库的完整网址，在Github上点击进入该仓库后，直接复制浏览器地址栏中的网址，用户名前面的部分改成”<a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#116;&#x68;&#117;&#98;&#46;&#x63;&#111;&#109;</a>:”，<strong>粘贴以后在最后加上“.git”</strong>，最后结果如上面命令行中所示。此处repo中用git而不是https协议是因为https可能会因为代理为题出现推送不成功的问题。</p>
+<p>其中，<em>repo</em>是最初创建的仓库的完整网址，在Github上点击进入该仓库后，直接复制浏览器地址栏中的网址，用户名前面的部分改成”<a href="mailto:&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#109;">&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#109;</a>:”，<strong>粘贴以后在最后加上“.git”</strong>，最后结果如上面命令行中所示。此处repo中用git而不是https协议是因为https可能会因为代理为题出现推送不成功的问题。</p>
 <p>完成以后，再次在Blog/blog/文件夹下打开命令行，输入下列命令进行部署：</p>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install hexo-deployer-git <span class="hljs-comment">--savehexo cleanhexo ghexo d</span><br></code></pre></td></tr></table></figure>
 
 <p>如果更改_config.yml文件时用的是git协议，hexo d这一条命令应该不会报错；可如果采用的https协议，很有可能报以下错误：</p>
-<p>![HexoError](C:/Blog/技术/20210830 【个人博客搭建】 01 Win10 + Hexo + Github/HexoError.png)</p>
+<p><img src="https://gitee.com/kerwin_deng/picbed/raw/master/img/HexoError.png" srcset="/img/loading.gif" lazyload alt="HexoError"></p>
 <p>这一步完成之后，博客已经被推送到Github上，此时可以在Github的仓库中查看整个项目，不出意外里面已经有文件了。访问该博客的网址是：用户名.github.io，比如本人的是kkk159.github.io。</p>
-<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><p>我本人是没有绑域名的，因为感觉图床还得绑一个域名（不用图床管理文档里的图片会很麻烦），我懒得再搞一个域名了。但是还是介绍一下怎么绑定域名的吧。</p>
-<p>以阿里云为例，先在阿里云上购买域名，比如我买的是kerwind.cn。</p>
+<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><p>以阿里云为例，先在阿里云上购买域名，比如我买的是kerwind.cn。</p>
 <p>随后进入控制台，进行解析：</p>
-<p>![域名解析](C:/Blog/技术/20210830 【个人博客搭建】 01 Win10 + Hexo + Github/域名解析.png)</p>
+<p><img src="https://gitee.com/kerwin_deng/picbed/raw/master/img/%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90.png" srcset="/img/loading.gif" lazyload alt="域名解析"></p>
 <p>点击添加记录，添加如下两条记录就行：</p>
-<p>![解析记录](C:/Blog/技术/20210830 【个人博客搭建】 01 Win10 + Hexo + Github/解析记录.png)</p>
+<p><img src="https://gitee.com/kerwin_deng/picbed/raw/master/img/%E8%A7%A3%E6%9E%90%E8%AE%B0%E5%BD%95.png" srcset="/img/loading.gif" lazyload alt="解析记录"></p>
 <p>第一条记录@的详细填写如图：</p>
-<p>![记录1](C:/Blog/技术/20210830 【个人博客搭建】 01 Win10 + Hexo + Github/记录1.png)</p>
+<p><img src="https://gitee.com/kerwin_deng/picbed/raw/master/img/%E8%AE%B0%E5%BD%951.png" srcset="/img/loading.gif" lazyload alt="记录1"></p>
 <p>记录值为 用户名.github.io，和之前访问博客的网址一致。</p>
 <p>第二条记录www的详细填写如图：</p>
-<p>![记录2](C:/Blog/技术/20210830 【个人博客搭建】 01 Win10 + Hexo + Github/记录2.png)</p>
+<p><img src="https://gitee.com/kerwin_deng/picbed/raw/master/img/%E8%AE%B0%E5%BD%952.png" srcset="/img/loading.gif" lazyload alt="记录2"></p>
 <p>与上一条不同的是主机记录的类型。</p>
 <p>配置完毕后，到Github的博客仓库下，点击 <em>Settings</em>，在左侧的选项栏里点击<em>Pages</em>，随后找到Custom domain，填入之前购买的域名，静静等待DNS解析完成。成功时页面会提示：</p>
-<p>![提示](C:/Blog/技术/20210830 【个人博客搭建】 01 Win10 + Hexo + Github/提示.png)</p>
+<p><img src="https://gitee.com/kerwin_deng/picbed/raw/master/img/%E6%8F%90%E7%A4%BA.png" srcset="/img/loading.gif" lazyload alt="提示"></p>
 <p>在浏览器中直接输入域名，便能访问博客了。</p>
 <h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>我不太喜欢Next那种风格的主题，恰巧在知乎看到了最近的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/137679728">一款主题Fluid的介绍</a>，感觉很不错，拿过来用了。在项目Github页面下载源码包：<a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid/releases/tag/v1.8.11">Release 1.8.11 · fluid-dev/hexo-theme-fluid (github.com)</a>，解压到blog/themes文件夹中，解压后将文件夹重命名为“fluid”。</p>
 <p>打开站点的配置文件，将主题更改为fluid：</p>
@@ -298,7 +297,7 @@
 <figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs excel">hexo <span class="hljs-built_in">n</span> 文章标题<br></code></pre></td></tr></table></figure>
 
 <p>这样生成的文档在首行会自动生成参数，没有参数的话框架识别不了该文档。</p>
-<p>文档中的连接一定用图床，否则容易空间不够。图床可以用七牛云，至于如何配置七牛云，随便搜一下就能找到文章，和配置域名没有太多区别。</p>
+<p>文档中的连接一定用图床，否则容易空间不够。图床可以用七牛云，至于如何配置七牛云，随便搜一下就能找到文章，和配置域名没有太多区别。本人使用的是gitee+picgo作图床，可以参考这篇博文<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102594554">PicGo + Gitee(码云)实现markdown图床 - 知乎 (zhihu.com)</a></p>
 
             </div>
             <hr>
